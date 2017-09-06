@@ -45,11 +45,16 @@ install: all
 	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	@sed "s/VERSION/${VERSION}/g" < xssstate.1 > ${DESTDIR}${MANPREFIX}/man1/xssstate.1
 	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/xssstate.1
+	@echo installing screensaver script to ${DESTDIR}${PREFIX}/bin
+	@cp -f xsidle.sh ${DESTDIR}${PREFIX}/bin
+	@chmod 755 ${DESTDIR}${PREFIX}/bin/xsidle.sh
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
 	@rm -f ${DESTDIR}${PREFIX}/bin/xssstate
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/xssstate.1
+	@echo removing screensaver script from ${DESTDIR}${PREFIX}/bin
+	@rm -f ${DESTDIR}${PREFIX}/bin/xsidle.sh
 
 .PHONY: all options clean dist install uninstall
